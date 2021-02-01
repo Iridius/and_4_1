@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">nmedia</string>
     <string name="title">NMedia!</string>
+    <string name="netology_logo">Netology logo</string>
+    <string name="netology_title">Netology. Online-university</string>
+    <string name="subTitle">May, 21 18:36</string>
+    <string name="some_item">Some item</string>
+    <string name="menu">menu</string>
 </resources>

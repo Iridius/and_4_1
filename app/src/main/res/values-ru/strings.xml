@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">нмедиа</string>
     <string name="title">НМедиа!</string>
+    <string name="netology_logo">Логотип Нетологии</string>
+    <string name="netology_title">Нетология. Университет интернет-профессий</string>
+    <string name="subTitle">21 мая а 18:36</string>
+    <string name="some_item">Элемент меню</string>
+    <string name="menu">menu</string>
 </resources>
