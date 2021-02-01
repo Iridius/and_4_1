@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="number_space">4dp</dimen>
+    <dimen name="icon_space">8dp</dimen>
+    <dimen name="logo_size">72dp</dimen>
+    <dimen name="title_space">8dp</dimen>
+    <dimen name="icons_space">16dp</dimen>
+</resources>
