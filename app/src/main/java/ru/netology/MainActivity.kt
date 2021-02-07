@@ -22,10 +22,15 @@ class MainActivity : AppCompatActivity() {
         /* likes */
         binding.txtLikes.text = formatNumber(post.likes)
         binding.imgLikes.setOnClickListener {
-            val change = if (post.hasAutoLike) -1 else 1
+            if(!post.hasAutoLike) {
+                post.likes++
+                binding.imgLikes.setImageResource(R.drawable.ic_baseline_favorite_24)
+            } else {
+                post.likes--
+                binding.imgLikes.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+            }
 
             post.hasAutoLike = !post.hasAutoLike
-            post.likes += change
 
             binding.txtLikes.text = formatNumber(post.likes)
         }
@@ -38,12 +43,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         /* views */
-        val txtViews = findViewById<TextView>(R.id.txtView)
-        txtViews.text = formatNumber(post.views)
-
-        findViewById<ImageButton>(R.id.imgViews).setOnClickListener {
+        binding.txtViews.text = formatNumber(post.views)
+        binding.imgViews.setOnClickListener {
             post.views++
-            txtViews.text = formatNumber(post.views)
+            binding.txtViews.text = formatNumber(post.views)
         }
     }
 }

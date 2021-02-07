@@ -108,11 +108,11 @@
         android:layout_marginEnd="@dimen/number_space"
         android:contentDescription="@string/likes"
         android:src="@drawable/ic_baseline_visibility_24"
-        app:layout_constraintEnd_toStartOf="@+id/txtView"
+        app:layout_constraintEnd_toStartOf="@+id/txtViews"
         app:layout_constraintTop_toTopOf="@+id/imgShares" />
 
     <TextView
-        android:id="@+id/txtView"
+        android:id="@+id/txtViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/share_count"
