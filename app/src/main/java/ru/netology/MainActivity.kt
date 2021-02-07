@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val txtLike = findViewById<TextView>(R.id.txtLikes)
             txtLike.text = formatNumber(post.likes)
 
-        findViewById<ImageButton>(R.id.imgLikes).setOnClickListener{
+        findViewById<ImageButton>(R.id.imgLikes).setOnClickListener {
             val change = if(post.hasAutoLike) -1 else 1
 
             post.hasAutoLike = !post.hasAutoLike
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val txtShares = findViewById<TextView>(R.id.txtShares)
             txtShares.text = formatNumber(post.shares)
 
-        findViewById<ImageButton>(R.id.imgShares).setOnClickListener{
+        findViewById<ImageButton>(R.id.imgShares).setOnClickListener {
             post.shares++
             txtShares.text = formatNumber(post.shares)
         }
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         val txtViews = findViewById<TextView>(R.id.txtView)
             txtViews.text = formatNumber(post.views)
 
-        findViewById<ImageButton>(R.id.imgViews).setOnClickListener{
+        findViewById<ImageButton>(R.id.imgViews).setOnClickListener {
             post.views++
             txtViews.text = formatNumber(post.views)
         }
