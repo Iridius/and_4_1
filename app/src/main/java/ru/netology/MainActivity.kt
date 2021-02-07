@@ -4,39 +4,42 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.TextView
+import org.jetbrains.annotations.NotNull
+import ru.netology.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val post = Post(id = 0, likes = 10, shares = 997, views = 5)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        initViews(binding)
+    }
+
+    private fun initViews(binding: ActivityMainBinding) {
         /* likes */
-        val txtLike = findViewById<TextView>(R.id.txtLikes)
-            txtLike.text = formatNumber(post.likes)
-
-        findViewById<ImageButton>(R.id.imgLikes).setOnClickListener {
-            val change = if(post.hasAutoLike) -1 else 1
+        binding.txtLikes.text = formatNumber(post.likes)
+        binding.imgLikes.setOnClickListener {
+            val change = if (post.hasAutoLike) -1 else 1
 
             post.hasAutoLike = !post.hasAutoLike
             post.likes += change
 
-            txtLike.text = formatNumber(post.likes)
+            binding.txtLikes.text = formatNumber(post.likes)
         }
 
         /* shares */
-        val txtShares = findViewById<TextView>(R.id.txtShares)
-            txtShares.text = formatNumber(post.shares)
-
-        findViewById<ImageButton>(R.id.imgShares).setOnClickListener {
+        binding.txtShares.text = formatNumber(post.shares)
+        binding.imgShares.setOnClickListener {
             post.shares++
-            txtShares.text = formatNumber(post.shares)
+            binding.txtShares.text = formatNumber(post.shares)
         }
 
         /* views */
         val txtViews = findViewById<TextView>(R.id.txtView)
-            txtViews.text = formatNumber(post.views)
+        txtViews.text = formatNumber(post.views)
 
         findViewById<ImageButton>(R.id.imgViews).setOnClickListener {
             post.views++
