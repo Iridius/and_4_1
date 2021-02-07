@@ -58,8 +58,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imgLikes"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/icon_space"
@@ -78,8 +79,9 @@
         app:layout_constraintStart_toEndOf="@+id/imgLikes"
         app:layout_constraintTop_toTopOf="@+id/imgLikes" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imgShares"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/icons_space"
@@ -98,8 +100,9 @@
         app:layout_constraintStart_toEndOf="@+id/imgShares"
         app:layout_constraintTop_toTopOf="@+id/imgShares" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/imgViews"
+        android:background="@android:color/transparent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/number_space"
