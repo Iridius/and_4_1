@@ -2,14 +2,10 @@ package ru.netology
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.TextView
-import org.jetbrains.annotations.NotNull
+import androidx.activity.viewModels
 import ru.netology.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val post = Post(id = 0, likes = 10, shares = 997, views = 5)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -19,35 +15,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews(binding: ActivityMainBinding) {
-        /* likes */
-        binding.txtLikes.text = formatNumber(post.likes)
-        binding.imgLikes.setOnClickListener {
-            if(!post.hasAutoLike) {
-                post.likes++
-                binding.imgLikes.setImageResource(R.drawable.ic_baseline_favorite_24)
-            } else {
-                post.likes--
-                binding.imgLikes.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+        /* ViewModel */
+        val viewModel: PostViewModel by viewModels()
+        viewModel.data.observe(this, { post ->
+            /* likes */
+            binding.txtLikes.text = formatNumber(post.likes)
+
+            binding.imgLikes.setImageResource(
+                if(post.hasAutoLike) R.drawable.ic_baseline_favorite_24
+                else R.drawable.ic_baseline_favorite_border_24
+            )
+            binding.imgLikes.setOnClickListener {
+                viewModel.like()
+                binding.txtLikes.text = viewModel.data.value?.likes?.let { number -> formatNumber(number) }
             }
 
-            post.hasAutoLike = !post.hasAutoLike
-
-            binding.txtLikes.text = formatNumber(post.likes)
-        }
-
-        /* shares */
-        binding.txtShares.text = formatNumber(post.shares)
-        binding.imgShares.setOnClickListener {
-            post.shares++
+            /* shares */
             binding.txtShares.text = formatNumber(post.shares)
-        }
+            binding.imgShares.setOnClickListener {
+                viewModel.share()
+                binding.txtShares.text = viewModel.data.value?.shares?.let { number -> formatNumber(number) }
+            }
 
-        /* views */
-        binding.txtViews.text = formatNumber(post.views)
-        binding.imgViews.setOnClickListener {
-            post.views++
+            /* views */
             binding.txtViews.text = formatNumber(post.views)
-        }
+            binding.imgViews.setOnClickListener {
+                viewModel.view()
+                binding.txtViews.text = viewModel.data.value?.views?.let { number -> formatNumber(number) }
+            }
+        })
     }
 }
 
