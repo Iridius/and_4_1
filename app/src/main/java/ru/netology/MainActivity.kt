@@ -15,35 +15,37 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews(binding: ActivityMainBinding) {
-        /* ViewModel */
-        val viewModel: PostViewModel by viewModels()
-        viewModel.data.observe(this, { post ->
-            /* likes */
-            binding.txtLikes.text = formatNumber(post.likes)
+        with(binding) {
+            /* ViewModel */
+            val viewModel: PostViewModel by viewModels()
+            viewModel.data.observe(this@MainActivity, { post ->
+                /* likes */
+                txtLikes.text = formatNumber(post.likes)
+                imgLikes.setImageResource(
+                    if (post.hasAutoLike) R.drawable.ic_baseline_favorite_24
+                    else R.drawable.ic_baseline_favorite_border_24
+                )
 
-            binding.imgLikes.setImageResource(
-                if(post.hasAutoLike) R.drawable.ic_baseline_favorite_24
-                else R.drawable.ic_baseline_favorite_border_24
-            )
-            binding.imgLikes.setOnClickListener {
+                /* shares */
+                txtShares.text = formatNumber(post.shares)
+
+                /* views */
+                txtViews.text = formatNumber(post.views)
+
+            })
+
+            imgLikes.setOnClickListener {
                 viewModel.like()
-                binding.txtLikes.text = viewModel.data.value?.likes?.let { number -> formatNumber(number) }
             }
 
-            /* shares */
-            binding.txtShares.text = formatNumber(post.shares)
-            binding.imgShares.setOnClickListener {
+            imgShares.setOnClickListener {
                 viewModel.share()
-                binding.txtShares.text = viewModel.data.value?.shares?.let { number -> formatNumber(number) }
             }
 
-            /* views */
-            binding.txtViews.text = formatNumber(post.views)
-            binding.imgViews.setOnClickListener {
+            imgViews.setOnClickListener {
                 viewModel.view()
-                binding.txtViews.text = viewModel.data.value?.views?.let { number -> formatNumber(number) }
             }
-        })
+        }
     }
 }
 
