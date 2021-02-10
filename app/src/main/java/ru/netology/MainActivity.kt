@@ -19,17 +19,13 @@ class MainActivity : AppCompatActivity() {
             /* ViewModel */
             val viewModel: PostViewModel by viewModels()
             viewModel.data.observe(this@MainActivity, { post ->
-                /* likes */
-                txtLikes.text = formatNumber(post.likes)
                 imgLikes.setImageResource(
                     if (post.hasAutoLike) R.drawable.ic_baseline_favorite_24
                     else R.drawable.ic_baseline_favorite_border_24
                 )
 
-                /* shares */
+                txtLikes.text = formatNumber(post.likes)
                 txtShares.text = formatNumber(post.shares)
-
-                /* views */
                 txtViews.text = formatNumber(post.views)
 
             })
