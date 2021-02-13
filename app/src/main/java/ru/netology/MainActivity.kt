@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews(binding: ActivityMainBinding) {
         with(binding) {
-            /* ViewModel */
             val viewModel: PostViewModel by viewModels()
             viewModel.data.observe(this@MainActivity, { post ->
                 imgLikes.setImageResource(
