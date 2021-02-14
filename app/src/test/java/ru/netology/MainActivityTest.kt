@@ -2,6 +2,7 @@ package ru.netology
 
 import org.junit.Assert.*
 import org.junit.Test
+import ru.netology.activity.formatNumber
 
 class MainActivityTest {
     @Test
