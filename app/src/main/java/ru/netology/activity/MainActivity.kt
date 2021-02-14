@@ -1,9 +1,11 @@
-package ru.netology
+package ru.netology.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import ru.netology.R
 import ru.netology.databinding.ActivityMainBinding
+import ru.netology.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
