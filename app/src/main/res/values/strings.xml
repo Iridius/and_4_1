@@ -2,11 +2,8 @@
     <string name="app_name">nmedia</string>
     <string name="title">NMedia!</string>
     <string name="netology_logo">Netology logo</string>
-    <string name="netology_title">Netology. Online-university</string>
-    <string name="subTitle">May, 21 18:36</string>
     <string name="some_item">Some item</string>
     <string name="menu">menu</string>
-    <string name="greeting">Hey! This is a new Netology. Once upon a time, Netology began with online marketing intensives. Then there were courses in design, development, analytics and management.</string>
     <string name="likes">likes</string>
     <string name="likes_count" translatable="false">10</string>
     <string name="share_count" translatable="false">5</string>

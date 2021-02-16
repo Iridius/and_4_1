@@ -5,32 +5,60 @@ import androidx.lifecycle.MutableLiveData
 import ru.netology.dto.Post
 
 interface PostRepository {
-    fun get(): LiveData<Post>
-    fun like()
-    fun share()
-    fun view()
+    fun getAll(): LiveData<List<Post>>
+    fun likeById(id: Long)
+    fun shareById(id: Long)
+    fun viewById(id: Long)
 }
 
 class PostRepositoryInMemoryImpl : PostRepository  {
-    private var post = Post(id = 0, likes = 10, shares = 997, views = 5, hasAutoLike = false)
-    private val data = MutableLiveData(post)
+    private var posts = listOf(
+        Post(
+            id = 0,
+            likes = 10,
+            shares = 997,
+            views = 5,
+            hasAutoLike = false,
+            title = "Нетология. Университет интернет-профессий",
+            subTitle = "21 мая в 18:36",
+            content = "Привет! Это новая Нетология. Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению."
+        ),
+        Post(
+            id = 1,
+            likes = 16,
+            shares = 995,
+            views = 99,
+            hasAutoLike = false,
+            title = "Программирование",
+            subTitle = "15 февраля",
+            content = "Курсы по веб и мобильной разработке для новичков и junior-разработчиков. Вы освоите профессию разработчика с нуля или добавите в арсенал необходимый язык программирования."
+        )
+    )
 
-    override fun get(): LiveData<Post> = data
+    private val data = MutableLiveData(posts)
 
-    override fun like() {
-        val direction = if(post.hasAutoLike) -1 else 1
+    override fun getAll(): LiveData<List<Post>> = data
 
-        post = post.copy(hasAutoLike = !post.hasAutoLike, likes = post.likes + 1 * direction)
-        data.value = post
+    override fun likeById(id: Long) {
+        posts = posts.map {
+            if(it.id != id) it else it.copy(hasAutoLike = !it.hasAutoLike)
+        }
+
+        data.value = posts
     }
 
-    override fun share() {
-        post = post.copy(shares = post.shares + 1)
-        data.value = post
+    override fun shareById(id: Long) {
+        posts = posts.map {
+            if(it.id != id) it else it.copy(likes = it.likes + 1)
+        }
+        data.value = posts
     }
 
-    override fun view() {
-        post = post.copy(views = post.views + 1)
-        data.value = post
+    override fun viewById(id: Long) {
+        posts = posts.map {
+            if(it.id != id) it else it.copy(views = it.views + 1)
+        }
+
+        data.value = posts
     }
 }
