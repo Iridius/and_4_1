@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -68,7 +68,7 @@
         android:id="@+id/txtLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/likes_count"
+        tools:text="@string/likes_count"
         android:layout_marginStart="@dimen/number_space"
         app:layout_constraintBottom_toBottomOf="@+id/imgLikes"
         app:layout_constraintStart_toEndOf="@+id/imgLikes"
@@ -89,7 +89,7 @@
         android:id="@+id/txtShares"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_count"
+        tools:text="@string/share_count"
         android:layout_marginStart="@dimen/number_space"
         app:layout_constraintBottom_toBottomOf="@+id/imgShares"
         app:layout_constraintStart_toEndOf="@+id/imgShares"
@@ -110,7 +110,7 @@
         android:id="@+id/txtViews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/share_count"
+        tools:text="@string/share_count"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtShares" />
 

@@ -41,7 +41,11 @@ class PostRepositoryInMemoryImpl : PostRepository  {
 
     override fun likeById(id: Long) {
         posts = posts.map {
-            if(it.id != id) it else it.copy(hasAutoLike = !it.hasAutoLike)
+            if(it.id != id) it
+            else it.copy(
+                hasAutoLike = !it.hasAutoLike,
+                likes = it.likes + 1 * (if (it.hasAutoLike) -1 else 1)
+            )
         }
 
         data.value = posts
@@ -49,7 +53,8 @@ class PostRepositoryInMemoryImpl : PostRepository  {
 
     override fun shareById(id: Long) {
         posts = posts.map {
-            if(it.id != id) it else it.copy(likes = it.likes + 1)
+            if(it.id != id) it
+            else it.copy(shares = it.shares + 1)
         }
         data.value = posts
     }
