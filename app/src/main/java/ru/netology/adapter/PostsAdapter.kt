@@ -10,6 +10,7 @@ interface Listener {
     fun onLike (post: Post)
     fun onShare (post: Post)
     fun onView (post : Post)
+    fun onRemove (post: Post)
 }
 
 class PostsAdapter (

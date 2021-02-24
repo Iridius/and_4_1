@@ -1,5 +1,6 @@
 package ru.netology.adapter
 
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
@@ -33,6 +34,21 @@ class PostViewHolder (
 
             imgViews.setOnClickListener {
                 listener.onView(post)
+            }
+
+            imageMenu.setOnClickListener{
+                PopupMenu(it.context, it).apply {
+                    inflate(R.menu.options_post)
+                    this.setOnMenuItemClickListener { item->
+                        when (item.itemId) {
+                            R.id.remove -> {
+                                listener.onRemove(post)
+                                true
+                            }
+                            else -> false
+                        }
+                    }
+                }.show()
             }
         }
     }
