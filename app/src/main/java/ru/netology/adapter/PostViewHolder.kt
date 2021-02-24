@@ -45,6 +45,11 @@ class PostViewHolder (
                                 listener.onRemove(post)
                                 true
                             }
+                            R.id.edit -> {
+                                listener.onEdit(post)
+                                true
+                            }
+
                             else -> false
                         }
                     }

@@ -10,12 +10,14 @@ interface PostRepository {
     fun shareById(id: Long)
     fun viewById(id: Long)
     fun removeById(id: Long)
+    fun save(post: Post)
 }
 
 class PostRepositoryInMemoryImpl : PostRepository  {
+    private var id = 0L
     private var posts = listOf(
         Post(
-            id = 0,
+            id = id++,
             likes = 10,
             shares = 997,
             views = 5,
@@ -25,7 +27,7 @@ class PostRepositoryInMemoryImpl : PostRepository  {
             content = "Привет! Это новая Нетология. Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению."
         ),
         Post(
-            id = 1,
+            id = id++,
             likes = 16,
             shares = 995,
             views = 99,
@@ -73,6 +75,26 @@ class PostRepositoryInMemoryImpl : PostRepository  {
             it.id != id
         }
 
+        data.value = posts
+    }
+
+    override fun save(post: Post) {
+        if(post.id == 0L) {
+            posts = listOf(
+                post.copy(
+                    id = id++,
+                    title = "post title",
+                    subTitle = "subtitle"
+                )
+            ) + posts
+
+            data.value = posts
+            return
+        }
+
+        posts = posts.map {
+            if(it.id != post.id) it else it.copy(content = post.content)
+        }
         data.value = posts
     }
 }

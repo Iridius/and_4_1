@@ -5,4 +5,7 @@
     <string name="menu">menu</string>
     <string name="likes">Нравится</string>
     <string name="remove">Удалить</string>
+    <string name="post_content">Содержание сообщения</string>
+    <string name="save">Сохранить</string>
+    <string name="edit">Редактировать</string>
 </resources>
