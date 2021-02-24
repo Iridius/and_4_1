@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">нмедиа</string>
-    <string name="title">НМедиа!</string>
     <string name="netology_logo">Логотип Нетологии</string>
-    <string name="some_item">Элемент меню</string>
     <string name="menu">menu</string>
     <string name="likes">Нравится</string>
     <string name="remove">Удалить</string>
