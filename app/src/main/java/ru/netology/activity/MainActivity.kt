@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnCancel.setOnClickListener {
             with(binding.txtContent) {
-                setText("")
+                setText(viewModel.edited.value?.content)
             }
         }
     }
