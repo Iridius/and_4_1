@@ -55,6 +55,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         viewModel.edited.observe(this, {post ->
+            //binding.group.visibility = View.VISIBLE
+
             if (post.id == 0L) {
                 return@observe
             }
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        /* change text */
         binding.txtContent.doAfterTextChanged {
             if(viewModel.edited.value?.content != it.toString()) {
                 binding.btnCancel.visibility = View.VISIBLE
@@ -73,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        /* save */
         binding.btnSave.setOnClickListener {
             with(binding.txtContent) {
                 if(text.isNullOrBlank()) {
@@ -90,9 +94,11 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
+                //binding.group.visibility = View.GONE
             }
         }
 
+        /* cancel */
         binding.btnCancel.setOnClickListener {
             with(binding.txtContent) {
                 setText(viewModel.edited.value?.content)
