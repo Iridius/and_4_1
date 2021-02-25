@@ -28,15 +28,30 @@
         android:id="@+id/txtContent"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
         android:hint="@string/post_content"
-        android:inputType="textMultiLine"
-        android:background="@android:color/transparent"
-        android:padding="24dp"
+        android:gravity="start|top"
         android:importantForAutofill="no"
-        app:layout_constraintTop_toTopOf="@id/barrier"
+        android:background="@color/ivory"
+        android:inputType="textMultiLine"
+        android:minHeight="102dp"
+        android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnSave"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/barrier" />
+
+    <ImageButton
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/clear"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/btnSave"
+        app:layout_constraintTop_toTopOf="@+id/txtContent"
+        app:srcCompat="@drawable/ic_baseline_clear_24" />
 
     <ImageButton
         android:id="@+id/btnSave"

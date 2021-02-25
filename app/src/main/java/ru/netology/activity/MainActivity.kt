@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.card_post.view.*
 import ru.netology.adapter.Listener
 import ru.netology.adapter.PostsAdapter
@@ -63,6 +65,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        binding.txtContent.doAfterTextChanged {
+            if(viewModel.edited.value?.content != it.toString()) {
+                binding.btnCancel.visibility = View.VISIBLE
+            } else {
+                binding.btnCancel.visibility = View.INVISIBLE
+            }
+        }
+
         binding.btnSave.setOnClickListener {
             with(binding.txtContent) {
                 if(text.isNullOrBlank()) {
@@ -80,6 +90,12 @@ class MainActivity : AppCompatActivity() {
                 setText("")
                 clearFocus()
                 AndroidUtils.hideKeyboard(this)
+            }
+        }
+
+        binding.btnCancel.setOnClickListener {
+            with(binding.txtContent) {
+                setText("")
             }
         }
     }
