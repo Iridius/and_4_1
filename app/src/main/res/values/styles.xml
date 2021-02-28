@@ -1,11 +1,11 @@
 <resources>
-    <style name="MyButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="backgroundTint">@android:color/transparent</item>
+    <style name="MyButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
         <item name="buttonTint">?attr/color</item>
         <item name="iconGravity">textStart</item>
     </style>
 
-    <style name="MyButton.Red" parent="MyButton">
-        <item name="iconTint">@color/red</item>
+    <style name="MyLikeBox" parent="MyButton">
+        <item name="buttonTint">@color/like_checkbox_tint</item>
     </style>
+
 </resources>

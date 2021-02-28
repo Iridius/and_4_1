@@ -18,10 +18,7 @@ class PostViewHolder (
 
             /* likes */
             likes.text = formatNumber(post.likes)
-            likes.setIconResource(
-                if(post.hasAutoLike) R.drawable.ic_baseline_favorite_24
-                else R.drawable.ic_baseline_favorite_border_24
-            )
+            likes.isChecked = post.hasAutoLike
             likes.setOnClickListener {
                 listener.onLike(post)
             }
