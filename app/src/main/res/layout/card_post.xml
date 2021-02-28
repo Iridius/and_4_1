@@ -67,9 +67,10 @@
         android:contentDescription="@string/likes"
         tools:text="10"
         app:icon="@drawable/ic_baseline_favorite_border_24"
-        app:iconGravity="start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtContent"
+        style="@style/MyButton.Red"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/shares"
@@ -78,9 +79,9 @@
         android:layout_marginStart="@dimen/icons_space"
         tools:text="10"
         app:icon="@drawable/ic_baseline_share_24"
-        app:iconGravity="start"
         app:layout_constraintStart_toEndOf="@+id/likes"
-        app:layout_constraintTop_toTopOf="@+id/likes" />
+        app:layout_constraintTop_toTopOf="@+id/likes"
+        style="@style/MyButton" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/views"
@@ -89,8 +90,8 @@
         android:layout_marginEnd="@dimen/number_space"
         tools:text="@string/share_count"
         app:icon="@drawable/ic_baseline_visibility_24"
-        app:iconGravity="start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/shares" />
+        app:layout_constraintTop_toTopOf="@+id/shares"
+        style="@style/MyButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
