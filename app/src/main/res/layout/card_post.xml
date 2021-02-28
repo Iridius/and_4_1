@@ -59,65 +59,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
 
-    <ImageButton
-        android:id="@+id/imgLikes"
-        android:background="@android:color/transparent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/likes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/icon_space"
         android:contentDescription="@string/likes"
-        android:src="@drawable/ic_baseline_favorite_border_24"
+        tools:text="10"
+        app:icon="@drawable/ic_baseline_favorite_border_24"
+        app:iconGravity="start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtContent" />
 
-    <TextView
-        android:id="@+id/txtLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@string/likes_count"
-        android:layout_marginStart="@dimen/number_space"
-        app:layout_constraintBottom_toBottomOf="@+id/imgLikes"
-        app:layout_constraintStart_toEndOf="@+id/imgLikes"
-        app:layout_constraintTop_toTopOf="@+id/imgLikes" />
-
-    <ImageButton
-        android:id="@+id/imgShares"
-        android:background="@android:color/transparent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/shares"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/icons_space"
-        android:contentDescription="@string/likes"
-        android:src="@drawable/ic_baseline_share_24"
-        app:layout_constraintStart_toEndOf="@+id/txtLikes"
-        app:layout_constraintTop_toTopOf="@+id/imgLikes" />
+        tools:text="10"
+        app:icon="@drawable/ic_baseline_share_24"
+        app:iconGravity="start"
+        app:layout_constraintStart_toEndOf="@+id/likes"
+        app:layout_constraintTop_toTopOf="@+id/likes" />
 
-    <TextView
-        android:id="@+id/txtShares"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="@string/share_count"
-        android:layout_marginStart="@dimen/number_space"
-        app:layout_constraintBottom_toBottomOf="@+id/imgShares"
-        app:layout_constraintStart_toEndOf="@+id/imgShares"
-        app:layout_constraintTop_toTopOf="@+id/imgShares" />
-
-    <ImageButton
-        android:id="@+id/imgViews"
-        android:background="@android:color/transparent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/views"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/number_space"
-        android:contentDescription="@string/likes"
-        android:src="@drawable/ic_baseline_visibility_24"
-        app:layout_constraintEnd_toStartOf="@+id/txtViews"
-        app:layout_constraintTop_toTopOf="@+id/imgShares" />
-
-    <TextView
-        android:id="@+id/txtViews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         tools:text="@string/share_count"
+        app:icon="@drawable/ic_baseline_visibility_24"
+        app:iconGravity="start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txtShares" />
+        app:layout_constraintTop_toTopOf="@+id/shares" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

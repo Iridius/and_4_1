@@ -15,27 +15,30 @@ class PostViewHolder (
             txtTitle.text = post.title
             txtSubtitle.text = post.subTitle
             txtContent.text = post.content
-            txtLikes.text = formatNumber(post.likes)
-            txtShares.text = formatNumber(post.shares)
-            txtViews.text = formatNumber(post.views)
 
-            imgLikes.setImageResource(
+            /* likes */
+            likes.text = formatNumber(post.likes)
+            likes.setIconResource(
                 if(post.hasAutoLike) R.drawable.ic_baseline_favorite_24
                 else R.drawable.ic_baseline_favorite_border_24
             )
-
-            imgLikes.setOnClickListener {
+            likes.setOnClickListener {
                 listener.onLike(post)
             }
 
-            imgShares.setOnClickListener {
+            /* shares */
+            shares.text = formatNumber(post.shares)
+            shares.setOnClickListener {
                 listener.onShare(post)
             }
 
-            imgViews.setOnClickListener {
+            /* views */
+            views.text = formatNumber(post.views)
+            views.setOnClickListener {
                 listener.onView(post)
             }
 
+            /* card menu */
             imageMenu.setOnClickListener{
                 PopupMenu(it.context, it).apply {
                     inflate(R.menu.options_post)
