@@ -1,8 +1,11 @@
 package ru.netology.adapter
 
+import android.content.Intent
 import android.widget.PopupMenu
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.R
+import ru.netology.activity.PostActivity
 import ru.netology.databinding.CardPostBinding
 import ru.netology.dto.Post
 
@@ -41,15 +44,14 @@ class PostViewHolder (
                     inflate(R.menu.options_post)
                     this.setOnMenuItemClickListener { item->
                         when (item.itemId) {
-                            R.id.remove -> {
-                                listener.onRemove(post)
-                                true
-                            }
                             R.id.edit -> {
                                 listener.onEdit(post)
                                 true
                             }
-
+                            R.id.remove -> {
+                                listener.onRemove(post)
+                                true
+                            }
                             else -> false
                         }
                     }

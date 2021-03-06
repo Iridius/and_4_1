@@ -1,13 +1,12 @@
 package ru.netology.activity
 
-import android.content.Context
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.widget.doAfterTextChanged
 import kotlinx.android.synthetic.main.card_post.view.*
 import ru.netology.adapter.Listener
 import ru.netology.adapter.PostsAdapter
@@ -16,6 +15,10 @@ import ru.netology.dto.Post
 import ru.netology.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
+    private val POST_MERGE: Int = 100
+    private val CONTENT: String = "content"
+    private val viewModel: PostViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,12 +42,12 @@ class MainActivity : AppCompatActivity() {
                 viewModel.viewById(post.id)
             }
 
-            override fun onRemove(post: Post) {
-                viewModel.removeById(post.id)
-            }
-
             override fun onEdit(post: Post) {
                 viewModel.edit(post)
+            }
+
+            override fun onRemove(post: Post) {
+                viewModel.removeById(post.id)
             }
         })
 
@@ -53,62 +56,36 @@ class MainActivity : AppCompatActivity() {
             adapter.submitList(posts)
         })
 
-        viewModel.edited.observe(this, {post ->
-            //binding.group.visibility = View.VISIBLE
+        binding.create.setOnClickListener {
+            val intent = Intent(this@MainActivity, PostActivity::class.java)
+            startActivityForResult(intent, POST_MERGE)
+        }
 
+        viewModel.edited.observe(this, {post ->
             if (post.id == 0L) {
                 return@observe
             }
 
-            with(binding.txtContent) {
-                requestFocus()
-                setText(post.content)
-            }
+            val intent = Intent(this@MainActivity, PostActivity::class.java)
+            intent.putExtra(Intent.EXTRA_TEXT, post.content)
+            startActivityForResult(intent, POST_MERGE)
         })
+    }
 
-        /* change text */
-        binding.txtContent.doAfterTextChanged {
-            if(viewModel.edited.value?.content != it.toString()) {
-                binding.btnCancel.visibility = View.VISIBLE
-            } else {
-                binding.btnCancel.visibility = View.INVISIBLE
-            }
-        }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
 
-        /* save */
-        binding.btnSave.setOnClickListener {
-            with(binding.txtContent) {
-                if(text.isNullOrBlank()) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Content can't be empty",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    return@setOnClickListener
+        when (requestCode) {
+            POST_MERGE -> {
+                if(resultCode != Activity.RESULT_OK) {
+                    return
                 }
 
-                viewModel.changeContent(text.toString())
-                viewModel.save()
-
-                setText("")
-                clearFocus()
-                AndroidUtils.hideKeyboard(this)
-                //binding.group.visibility = View.GONE
+                data?.getStringExtra(Intent.EXTRA_TEXT)?.let {
+                    viewModel.changeContent(it)
+                    viewModel.save()
+                }
             }
         }
-
-        /* cancel */
-        binding.btnCancel.setOnClickListener {
-            with(binding.txtContent) {
-                setText(viewModel.edited.value?.content)
-            }
-        }
-    }
-}
-
-object AndroidUtils {
-    fun hideKeyboard(view: View) {
-        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

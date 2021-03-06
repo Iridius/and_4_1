@@ -5,7 +5,7 @@
     <string name="likes">likes</string>
     <string name="likes_count" translatable="false">10</string>
     <string name="share_count" translatable="false">5</string>
-    <string name="remove">remove</string>
+    <string name="remove">Remove</string>
     <string name="post_content">Post content</string>
     <string name="save">Save</string>
     <string name="edit">Edit</string>
