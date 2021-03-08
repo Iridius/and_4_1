@@ -79,6 +79,7 @@ class PostRepositorySharedPrefsImpl(
             ) + posts
 
             data.value = posts
+            sync()
             return
         }
 
