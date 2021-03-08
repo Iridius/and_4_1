@@ -12,6 +12,7 @@ interface Listener {
     fun onView (post : Post)
     fun onEdit(post: Post)
     fun onRemove (post: Post)
+    fun onVideoView(post: Post)
 }
 
 class PostsAdapter (

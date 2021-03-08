@@ -19,6 +19,12 @@ class PostViewHolder (
             txtSubtitle.text = post.subTitle
             txtContent.text = post.content
 
+            /* link */
+            link.text = post.video
+            link.setOnClickListener {
+                listener.onVideoView(post)
+            }
+
             /* likes */
             likes.text = formatNumber(post.likes)
             likes.isChecked = post.hasAutoLike

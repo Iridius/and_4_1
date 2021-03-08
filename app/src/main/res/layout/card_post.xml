@@ -57,7 +57,24 @@
         android:padding="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageLogo" />
+        app:layout_constraintTop_toBottomOf="@+id/imageLogo"
+        tools:text="content" />
+
+    <TextView
+        android:id="@+id/link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="4dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:linksClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtContent"
+        tools:text="link"
+        />
+        <!-- android:autoLink="web" -->
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/likes"
@@ -66,8 +83,9 @@
         android:layout_marginTop="@dimen/icon_space"
         android:button="@drawable/ic_like_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContent"
+        app:layout_constraintTop_toBottomOf="@+id/link"
         style="@style/MyLikeBox"
+        tools:text="5"
         />
 
     <com.google.android.material.button.MaterialButton

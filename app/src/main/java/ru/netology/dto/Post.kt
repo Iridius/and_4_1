@@ -8,5 +8,6 @@ data class Post (
     val views: Int = 0,
     val title: String = "",
     val subTitle: String = "",
-    val content: String = ""
+    val content: String = "",
+    val video: String? = ""
 )
