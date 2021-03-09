@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.android.synthetic.main.activity_post.view.*
 import ru.netology.dto.Post
 import ru.netology.repository.PostRepository
+import ru.netology.repository.PostRepositoryFileImpl
 import ru.netology.repository.PostRepositoryInMemoryImpl
 import ru.netology.repository.PostRepositorySharedPrefsImpl
 
@@ -24,7 +25,8 @@ private val emptyPost = Post(
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
     //private val repository: PostRepository = PostRepositoryInMemoryImpl()
-    private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
+    //private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
+    private val repository: PostRepositoryFileImpl = PostRepositoryFileImpl(application)
 
     val data = repository.getAll()
     val edited = MutableLiveData(emptyPost)
