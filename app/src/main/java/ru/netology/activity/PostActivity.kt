@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.databinding.ActivityPostBinding
+import ru.netology.dto.Global
 
 class PostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,8 @@ class PostActivity : AppCompatActivity() {
         with(binding) {
             /* content */
             content.requestFocus()
-            content.setText(intent.getStringExtra(Intent.EXTRA_TEXT))
+            content.setText(intent.getStringExtra(Global.CONTENT))
+            link.setText(intent.getStringExtra(Global.LINK))
 
             /* fab: ok */
             save.setOnClickListener {
@@ -23,8 +25,11 @@ class PostActivity : AppCompatActivity() {
                 if (content.text.isBlank()) {
                     setResult(Activity.RESULT_CANCELED, intent)
                 } else {
-                    val text = content.text.toString()
-                    intent.putExtra(Intent.EXTRA_TEXT, text)
+                    val content = content.text.toString()
+                    val link = link.text.toString()
+
+                    intent.putExtra(Global.CONTENT, content)
+                    intent.putExtra(Global.LINK, link)
                     setResult(Activity.RESULT_OK, intent)
                 }
 

@@ -9,5 +9,5 @@ data class Post (
     val title: String = "",
     val subTitle: String = "",
     val content: String = "",
-    val video: String? = ""
+    val link: String? = ""
 )

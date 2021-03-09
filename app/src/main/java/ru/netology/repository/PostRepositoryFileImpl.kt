@@ -14,7 +14,7 @@ class PostRepositoryFileImpl(
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val fileName = "posts.json"
 
-    private var id = 0L
+    private var id = 1L
     private var posts = emptyList<Post>()
     private val data = MutableLiveData(posts)
 
@@ -88,7 +88,7 @@ class PostRepositoryFileImpl(
         }
 
         posts = posts.map {
-            if(it.id != post.id) it else it.copy(content = post.content)
+            if(it.id != post.id) it else it.copy(content = post.content, link = post.link)
         }
 
         data.value = posts

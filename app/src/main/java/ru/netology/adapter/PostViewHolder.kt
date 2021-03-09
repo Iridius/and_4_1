@@ -1,11 +1,8 @@
 package ru.netology.adapter
 
-import android.content.Intent
 import android.widget.PopupMenu
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.R
-import ru.netology.activity.PostActivity
 import ru.netology.databinding.CardPostBinding
 import ru.netology.dto.Post
 
@@ -20,7 +17,7 @@ class PostViewHolder (
             txtContent.text = post.content
 
             /* link */
-            link.text = post.video
+            link.text = post.link
             link.setOnClickListener {
                 listener.onVideoView(post)
             }

@@ -9,12 +9,26 @@
     <EditText
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:autofillHints="@string/post_content"
         android:gravity="start"
         android:inputType="textMultiLine"
-        tools:text="Lorem ipsum"
-        tools:ignore="LabelFor" />
+        app:layout_constraintBottom_toTopOf="@+id/link"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="LabelFor"
+        tools:text="Lorem ipsum" />
+
+    <EditText
+        android:id="@+id/link"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:autofillHints="@string/post_content"
+        android:gravity="start"
+        android:inputType="textUri"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="LabelFor"
+        tools:text="www.youtube.com" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/save"
@@ -22,10 +36,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:contentDescription="@string/save"
         android:src="@drawable/ic_baseline_save_transparent_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@android:color/white"
-        android:contentDescription="@string/save" />
+        app:tint="@android:color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

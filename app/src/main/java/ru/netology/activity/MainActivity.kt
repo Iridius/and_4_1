@@ -5,18 +5,18 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import kotlinx.android.synthetic.main.card_post.view.*
 import ru.netology.adapter.Listener
 import ru.netology.adapter.PostsAdapter
 import ru.netology.databinding.ActivityMainBinding
+import ru.netology.dto.Global
 import ru.netology.dto.Post
 import ru.netology.viewmodel.PostViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val POST_MERGE: Int = 100
+    private val POST_ADD: Int = 100
+    private val POST_EDIT: Int = 110
     private val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             override fun onVideoView(post: Post) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_VIEW
-                    data = Uri.parse(post.video)
+                    data = Uri.parse(post.link)
                 }
                 startActivity(intent)
             }
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.create.setOnClickListener {
             val intent = Intent(this@MainActivity, PostActivity::class.java)
-            startActivityForResult(intent, POST_MERGE)
+            startActivityForResult(intent, POST_ADD)
         }
 
         viewModel.edited.observe(this, {post ->
@@ -75,8 +75,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             val intent = Intent(this@MainActivity, PostActivity::class.java)
-            intent.putExtra(Intent.EXTRA_TEXT, post.content)
-            startActivityForResult(intent, POST_MERGE)
+            intent.putExtra(Global.CONTENT, post.content)
+            intent.putExtra(Global.LINK, post.link)
+            startActivityForResult(intent, POST_EDIT)
         })
     }
 
@@ -84,15 +85,16 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            POST_MERGE -> {
+            POST_ADD, POST_EDIT -> {
                 if(resultCode != Activity.RESULT_OK) {
                     return
                 }
 
-                data?.getStringExtra(Intent.EXTRA_TEXT)?.let {
-                    viewModel.changeContent(it)
-                    viewModel.save()
-                }
+                val content = data?.getStringExtra(Global.CONTENT)
+                val link = data?.getStringExtra(Global.LINK)
+
+                viewModel.changeContent(content, link)
+                viewModel.save()
             }
         }
     }

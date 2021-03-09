@@ -16,7 +16,7 @@ class PostRepositoryInMemoryImpl : PostRepository  {
             title = "Нетология. Университет интернет-профессий",
             subTitle = "21 мая в 18:36",
             content = "Привет! Это новая Нетология. Когда-то Нетология начиналась с интенсивов по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике и управлению.",
-            video = "https://www.youtube.com/watch?v=YNiI6C0142g"
+            link = "https://www.youtube.com/watch?v=YNiI6C0142g"
         ),
         Post(
             id = id++,
@@ -27,7 +27,7 @@ class PostRepositoryInMemoryImpl : PostRepository  {
             title = "Программирование",
             subTitle = "15 февраля",
             content = "Курсы по веб и мобильной разработке для новичков и junior-разработчиков. Вы освоите профессию разработчика с нуля или добавите в арсенал необходимый язык программирования.",
-            video = "https://www.youtube.com/watch?v=i2dzkoHmFmc"
+            link = "https://www.youtube.com/watch?v=i2dzkoHmFmc"
         ),
         Post(
             id = id++,

@@ -15,7 +15,7 @@ class PostRepositorySharedPrefsImpl(
     private val type = TypeToken.getParameterized(List::class.java, Post::class.java).type
     private val key = "posts"
 
-    private var id = 0L
+    private var id = 1L
     private var posts = emptyList<Post>()
     private val data = MutableLiveData(posts)
 
