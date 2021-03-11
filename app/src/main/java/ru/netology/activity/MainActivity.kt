@@ -1,4 +1,4 @@
-package ru.netology.activity
+gitpackage ru.netology.activity
 
 import android.app.Activity
 import android.content.Intent
