@@ -20,8 +20,6 @@ private val emptyPost = Post(
 
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
-    //private val repository: PostRepository = PostRepositoryInMemoryImpl()
-    //private val repository: PostRepository = PostRepositorySharedPrefsImpl(application)
     private val repository: PostRepositoryFileImpl = PostRepositoryFileImpl(application)
 
     val data = repository.getAll()

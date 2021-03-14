@@ -4,7 +4,7 @@ import org.junit.Assert.*
 import org.junit.Test
 import ru.netology.adapter.formatNumber
 
-class MainActivityTest {
+class FeedFragmentTest {
     @Test
     fun getNumber_before_1000() {
         val expected = "900"
