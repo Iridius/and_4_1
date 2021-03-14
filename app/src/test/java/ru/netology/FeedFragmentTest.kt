@@ -2,13 +2,14 @@ package ru.netology
 
 import org.junit.Assert.*
 import org.junit.Test
-import ru.netology.adapter.formatNumber
+import ru.netology.dto.Global
+import ru.netology.dto.Global.formatNumber
 
 class FeedFragmentTest {
     @Test
     fun getNumber_before_1000() {
         val expected = "900"
-        val actual = formatNumber(900)
+        val actual = Global.formatNumber(900)
 
         assertEquals("Ожидалось, что для небольших чисел формитирования не будет",
             expected, actual)
