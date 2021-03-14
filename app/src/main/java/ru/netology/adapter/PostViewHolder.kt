@@ -4,6 +4,7 @@ import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.R
 import ru.netology.databinding.CardPostBinding
+import ru.netology.dto.Global
 import ru.netology.dto.Post
 
 class PostViewHolder (
@@ -23,20 +24,20 @@ class PostViewHolder (
             }
 
             /* likes */
-            likes.text = formatNumber(post.likes)
+            likes.text = Global.formatNumber(post.likes)
             likes.isChecked = post.hasAutoLike
             likes.setOnClickListener {
                 listener.onLike(post)
             }
 
             /* shares */
-            shares.text = formatNumber(post.shares)
+            shares.text = Global.formatNumber(post.shares)
             shares.setOnClickListener {
                 listener.onShare(post)
             }
 
             /* views */
-            views.text = formatNumber(post.views)
+            views.text = Global.formatNumber(post.views)
             views.setOnClickListener {
                 listener.onView(post)
             }
@@ -61,23 +62,5 @@ class PostViewHolder (
                 }.show()
             }
         }
-    }
-}
-
-fun formatNumber(number: Int): String {
-    return when {
-        number >= 1_000_000 -> roundNumber(number / 1_000_000.0) + "M"
-        number >= 1_000 -> roundNumber(number / 1_000.0) + "K"
-        else -> number.toString()
-    }
-}
-
-fun roundNumber(number: Double): String {
-    val value = number.toString().take(3)
-
-    return when {
-        value.endsWith(".") -> value.take(2)
-        value.endsWith(".0") -> value.take(1)
-        else -> value
     }
 }
