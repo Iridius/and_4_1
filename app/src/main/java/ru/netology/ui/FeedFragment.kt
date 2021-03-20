@@ -19,7 +19,7 @@ import ru.netology.viewmodel.PostViewModel
 
 class FeedFragment : Fragment() {
     private lateinit var binding: FragmentFeedBinding
-    private val viewModel: PostViewModel by viewModels (
+    private val viewModel: PostViewModel by viewModels(
         ownerProducer = ::requireParentFragment
     )
 
@@ -27,20 +27,26 @@ class FeedFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFeedBinding.inflate(
             inflater,
             container,
             false
         )
-        initViews()
+
+        //initViews(inflater.context.applicationContext)
 
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        initViews()
+    }
+
     private fun initViews() {
         val adapter = PostsAdapter(object : Listener {
-            override fun onShare(post : Post) {
+            override fun onShare(post: Post) {
                 viewModel.shareById(post.id)
             }
 
@@ -63,7 +69,7 @@ class FeedFragment : Fragment() {
             override fun onVideoView(post: Post) {
                 val intent = Intent().apply {
                     action = Intent.ACTION_VIEW
-                    data = Uri.parse(post.link)
+                    data = post.link?.let { getUri(it) }
                 }
                 startActivity(intent)
             }
@@ -78,10 +84,18 @@ class FeedFragment : Fragment() {
             findNavController().navigate(R.id.action_feedFragment_to_postFragment)
         }
 
-        viewModel.edited.observe(viewLifecycleOwner, {post ->
+        viewModel.edited.observe(viewLifecycleOwner, { post ->
             if (post.id == 0L) {
                 return@observe
             }
         })
+    }
+
+    private fun getUri(link: String): Uri? {
+        if (link.startsWith("http")) {
+            return Uri.parse(link)
+        }
+
+        return Uri.parse("https://$link")
     }
 }

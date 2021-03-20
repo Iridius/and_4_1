@@ -13,6 +13,10 @@ class PostViewHolder (
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(post : Post) {
         binding.apply {
+            root.setOnClickListener {
+                val i = 0;
+            }
+
             txtTitle.text = post.title
             txtSubtitle.text = post.subTitle
             txtContent.text = post.content
